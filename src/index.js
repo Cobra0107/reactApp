@@ -1,10 +1,16 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 
+// Youtube API Key
+const API_KEY = 'AIzaSyCJMzkkK5YxxYI7ZzdDEO73dE63-Wa-nD0';
 
 // New component for html generations.
-const App = function() {
-  return <div>Hi there!!</div>;
+// Naming follow the ES6 standard.
+// ES5 standard is something like const App = function(){}
+const App = () => {
+  return <div className='first-class'>Hi there!!</div>;
 }
 
 
 // Get the generated HTML and put it on page (in DOM).
-React.render(App);
+ReactDOM.render(<App />, document.querySelector('.react-container'));
