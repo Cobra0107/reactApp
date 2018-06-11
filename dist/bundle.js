@@ -19491,6 +19491,9 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	// Above line equals to.
+	// const component = React.Component
+
 	// ES6 Function Based Component
 	// const SearchBar = () => {
 	//   return <input />;
@@ -19501,19 +19504,45 @@
 	var SearchBar = function (_React$Component) {
 	  _inherits(SearchBar, _React$Component);
 
-	  function SearchBar() {
+	  // Constructor
+	  function SearchBar(props) {
 	    _classCallCheck(this, SearchBar);
 
-	    return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+
+	    _this.state = { term: 'Search' };
+	    return _this;
 	  }
+
+	  // Render method for class.
+
 
 	  _createClass(SearchBar, [{
 	    key: 'render',
-
-	    // Render method for class.
 	    value: function render() {
-	      return _react2.default.createElement('input', null);
+	      var _this2 = this;
+
+	      // Using the normal funciton call on event.
+	      // return <input onChange={this.handleInputChange} />;
+
+	      // Using arrow function OR ES6 for cleaner code.
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'search-container' },
+	        _react2.default.createElement('input', {
+	          className: 'search-bar react-search',
+	          value: this.state.term,
+	          onChange: function onChange(event) {
+	            return _this2.setState({ term: event.target.value });
+	          } })
+	      );
 	    }
+
+	    // // Function to handle event of onChange.
+	    // handleInputChange(event) {
+	    //   console.log(event.target.value);
+	    // }
+
 	  }]);
 
 	  return SearchBar;
